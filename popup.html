@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { font: 13px system-ui, sans-serif; width: 360px; margin: 12px; color: #222; }
+  h1 { font-size: 15px; margin: 0 0 8px; }
+  .big { font-size: 28px; font-weight: 600; }
+  .row { display: flex; justify-content: space-between; gap: 8px; padding: 4px 0; border-bottom: 1px solid #eee; }
+  .row .name { flex: 1; }
+  .muted { color: #777; }
+  .warn { color: #b45309; }
+  .llm::after { content: " ✦"; color: #7c3aed; }
+  #list { max-height: 260px; overflow-y: auto; margin-top: 8px; }
+  details { margin-top: 10px; }
+  input { width: 100%; box-sizing: border-box; margin: 2px 0 8px; padding: 4px; }
+  #servings { width: 60px; }
+  .wrap { border-bottom: 1px solid #eee; }
+  .wrap .row { border-bottom: none; align-items: baseline; }
+  .sub { display: block; font-size: 11px; color: #888; }
+  .edit { border: none; background: none; cursor: pointer; color: #555; padding: 0 2px; }
+  select { width: 100%; box-sizing: border-box; margin: 2px 0 6px; font-size: 12px; }
+  textarea { width: 100%; box-sizing: border-box; margin: 6px 0; padding: 4px; font: inherit; }
+  #pasteBtn { margin-bottom: 6px; padding: 4px 10px; }
+</style>
+</head>
+<body>
+  <h1 id="title">Recipe Fiber Calculator</h1>
+  <div id="status" class="muted">Reading recipe…</div>
+  <div id="summary" hidden>
+    <div><span class="big" id="perServing"></span> g fiber per serving</div>
+    <div class="muted">Total <span id="total"></span> g · Servings
+      <input id="servings" type="number" min="1" step="1"></div>
+    <div id="listed" class="muted"></div>
+  </div>
+  <div id="list"></div>
+  <details id="pasteSection">
+    <summary>Paste recipe text</summary>
+    <textarea id="pasteBox" rows="7" placeholder="Copy the ingredients (or the whole recipe) from the page and paste here…"></textarea>
+    <button id="pasteBtn">Calculate fiber</button>
+    <div class="muted">Works best with just the ingredient list. If you paste a full recipe, include the “Ingredients” heading.</div>
+  </details>
+  <details>
+    <summary>Settings</summary>
+    <label>USDA API key (free at fdc.nal.usda.gov; DEMO_KEY is heavily rate-limited)
+      <input id="usdaKey" placeholder="DEMO_KEY"></label>
+    <label>Anthropic API key (optional, for hard-to-parse lines)
+      <input id="anthropicKey" type="password" placeholder="sk-ant-…"></label>
+  </details>
+  <script src="popup.js"></script>
+</body>
+</html>

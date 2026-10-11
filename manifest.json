@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Recipe Fiber Calculator",
+  "version": "0.1.0",
+  "description": "Estimates the fiber in the recipe on the current page.",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "host_permissions": [
+    "https://api.nal.usda.gov/*",
+    "https://api.anthropic.com/*"
+  ],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_popup": "popup.html" }
+}
